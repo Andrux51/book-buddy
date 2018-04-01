@@ -4,26 +4,42 @@ class EmailForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            emailInput: ''
+            emailInput: {value: '', valid: false}
         };
     }
 
+    handleEmailValidation = (e) => {
+        // **validation regex from http://emailregex.com/
+        // eslint-disable-next-line
+        return (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+            .test(e.target.value);
+    }
+
     handleEmailInputChange = (e) => {
-        this.setState({emailInput: e.target.value});
+        this.setState({
+            emailInput: {
+                value: e.target.value,
+                valid: this.handleEmailValidation(e)
+            }
+        });
     }
 
     handleSignUpButton = (e) => {
         e.preventDefault();
-        console.log(`${this.state.emailInput} signed up, send req to db`);
+        if(this.state.emailInput.valid) {
+            console.log(`${this.state.emailInput.value} signed up, send req to db`);
+        } else {
+            console.log('validation failed, color up the input and such');
+        }
     }
 
     render() {
         return (
             <form>
-                <input type="text"
+                <input type="email"
                     className="bb-form-input"
-                    placeholder="Email"
-                    value={this.state.emailInput}
+                    placeholder="Enter your email address..."
+                    value={this.state.emailInput.value}
                     onChange={this.handleEmailInputChange}
                 />
                 <button type="submit"

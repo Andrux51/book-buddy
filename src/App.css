@@ -58,7 +58,7 @@ button[type="submit"] {
   padding: 10px 15px;
 }
 
-.bb-form-input[type="text"] {
+.bb-form-input[type="email"] {
   padding:10px;
   border-radius: 3px;
   border: 1px solid #ccc;
