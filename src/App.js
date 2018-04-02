@@ -11,9 +11,26 @@ import GetStartedPage from './components/GetStarted.page';
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      emailEntered: false
-    }
+      subscriber: {
+        email: '',
+        genresChosen: [],
+        name: ''
+      }
+    };
+  }
+
+  handleSubmit = (email, genresChosen) => {
+    this.setState({ subscriber: { email, genresChosen } });
+  }
+
+  updateSubscriber = (key, val) => {
+    let subscriber = Object.assign({}, this.state.subscriber);
+
+    subscriber[key] = val;
+
+    this.setState({ subscriber });
   }
 
   render() {
@@ -21,14 +38,25 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-              <Link to="/">
-                <img src="http://placehold.it/80x80?text=logo" className="App-logo" alt="logo" />
-              </Link>
+            <Link to="/">
+              <img src="http://placehold.it/80x80?text=logo" className="App-logo" alt="logo" />
+            </Link>
             <h1 className="App-title">Welcome to BookBuddy</h1>
           </header>
           <div>
-            <Route exact path="/" component={WelcomePage} render={WelcomePage.getTitle}/>
-            <Route path="/get-started" component={GetStartedPage} render={GetStartedPage.setTitle}/>
+            <Route path="/"
+              exact
+              component={WelcomePage}
+            />
+            <Route path="/get-started"
+              render={() =>
+                <GetStartedPage
+                  onSubmit={this.handleSubmit}
+                  subscriber={this.state.subscriber}
+                  updateSubscriber={this.updateSubscriber}
+                />
+              }
+            />
           </div>
         </div>
       </Router>

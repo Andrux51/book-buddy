@@ -8,29 +8,26 @@ class EmailForm extends React.Component {
         };
     }
 
-    handleEmailValidation = (e) => {
+    handleEmailValidation = val => {
         // **validation regex from http://emailregex.com/
         // eslint-disable-next-line
         return (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
-            .test(e.target.value);
+            .test(val);
     }
 
-    handleEmailInputChange = (e) => {
+    handleChange = e => {
         this.setState({
             emailInput: {
                 value: e.target.value,
-                valid: this.handleEmailValidation(e)
+                valid: this.handleEmailValidation(e.target.value)
             }
         });
+        this.props.onChange(e);
     }
 
-    handleSignUpButton = (e) => {
+    handleSubmit = e => {
         e.preventDefault();
-        if(this.state.emailInput.valid) {
-            console.log(`${this.state.emailInput.value} signed up, send req to db`);
-        } else {
-            console.log('validation failed, color up the input and such');
-        }
+        this.props.handleSubmit(this.state.emailInput);
     }
 
     render() {
@@ -40,12 +37,16 @@ class EmailForm extends React.Component {
                     className="bb-form-input"
                     placeholder="Enter your email address..."
                     value={this.state.emailInput.value}
-                    onChange={this.handleEmailInputChange}
+                    onChange={this.handleChange}
                 />
                 <button type="submit"
                     className="bb-btn-submit"
-                    onClick={this.handleSignUpButton}>
-                    Sign me up!
+                    onClick={this.handleSubmit}
+                    disabled={!this.props.allowSubmit}
+                >
+                    {this.props.submitButtonText}
+                    {/* {this.props.allowSubmit && `Sign me up!`}
+                    {!this.props.allowSubmit && `Choose Genres`} */}
                 </button>
             </form>
         )

@@ -49,6 +49,11 @@ button[class*="bb-btn-"] a {
   text-decoration: none;
   padding: 10px 15px;
 }
+button[class*="bb-btn-"][disabled] {
+  background-color: #ddd;
+  color: #aaa;
+  cursor: not-allowed;
+}
 
 .bb-btn-route {
   background-color:#6c9;
@@ -64,4 +69,16 @@ button[type="submit"] {
   border: 1px solid #ccc;
   margin-right: 1em;
   font-size:16px;
+}
+
+.bb-genre-checkbox {
+  text-align: initial;
+  display: inline-block;
+  padding: 0 8px;
+}
+.bb-checkbox-matrix {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 18px;
 }
