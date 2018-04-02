@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div>
+  <div
+    className="App"
+  >
+    <header
+      className="App-header"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <img
+          alt="logo"
+          className="App-logo"
+          src="http://placehold.it/80x80?text=logo"
+        />
+      </a>
+      <h1
+        className="App-title"
+      >
+        Welcome to BookBuddy
+      </h1>
+    </header>
+    <div>
+      <div>
+        <p
+          className="App-intro bb-description"
+        >
+          <strong>
+            Upgrade your inbox
+          </strong>
+           with daily deals on free and discounted ebooks across a multitude of genres. Discover new authors both traditionally and indepedently published.
+          <br />
+          <br />
+          Choose the genres that appeal most to you, and we'll curate an extra choice here and there to help you discover new stuff, too.
+        </p>
+        <button
+          className="bb-btn-route"
+          type="button"
+        >
+          <a
+            href="/get-started"
+            onClick={[Function]}
+          >
+            Get Started
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
