@@ -19,7 +19,7 @@ class GetStartedPage extends React.Component {
         return (
             <div>
                 <p className="bb-description">
-                    Choose 2-4 genres from the list below. You can choose more later,
+                    Choose <strong>2-4</strong> genres from the list below. You can choose more later,
                     but let's start with something reasonable so your first emails are
                     a bit easier to swallow.
                 </p>

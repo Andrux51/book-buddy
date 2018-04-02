@@ -8,3 +8,5 @@ class GenreSelection extends React.Component {
         )
     }
 }
+
+export default GenreSelection;

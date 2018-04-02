@@ -21,7 +21,9 @@ class WelcomePage extends React.Component {
                     to you, and we'll curate an extra choice here and there to
                     help you discover new stuff, too.
                 </p>
-                <button type="button" className="bb-btn-route"><Link to="/get-started">Get Started</Link></button>
+                <button type="button" className="bb-btn-route">
+                    <Link to="/get-started">Get Started</Link>
+                </button>
             </div>
         )
     }
