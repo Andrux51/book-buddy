@@ -49,7 +49,11 @@ describe(`Main app component`, () => {
     expect(typeof app.state.subscriber.name).toBe('string');
   });
 
-  test(`update subscriber`, () => {
-    expect(typeof app.state.subscriber).toBe('object');
+  test(`update subscriber name`, () => {
+    const newName = `andy`;
+
+    app.updateSubscriber(`name`, newName);
+
+    expect(app.state.subscriber.name).toBe(newName);
   });
 });
