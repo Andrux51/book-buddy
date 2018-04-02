@@ -21,10 +21,6 @@ class App extends Component {
     };
   }
 
-  handleSubmit = (email, genresChosen) => {
-    this.setState({ subscriber: { email, genresChosen } });
-  }
-
   updateSubscriber = (key, val) => {
     let subscriber = Object.assign({}, this.state.subscriber);
 
@@ -51,7 +47,6 @@ class App extends Component {
             <Route path="/get-started"
               render={() =>
                 <GetStartedPage
-                  onSubmit={this.handleSubmit}
                   subscriber={this.state.subscriber}
                   updateSubscriber={this.updateSubscriber}
                 />
