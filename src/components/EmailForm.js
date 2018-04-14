@@ -1,13 +1,14 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
+const mapStateToProps = (state) => {
+    return {
+        emailInput: state.emailInput,
+        subscriber: state.subscriber
+    };
+}
 
 class EmailForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            emailInput: {value: '', valid: false}
-        };
-    }
-
     handleEmailValidation = val => {
         // **validation regex from http://emailregex.com/
         // eslint-disable-next-line
@@ -16,18 +17,28 @@ class EmailForm extends React.Component {
     }
 
     handleChange = e => {
-        this.setState({
+        this.props.dispatch({
+            type: "UPDATE_EMAIL_INPUT",
             emailInput: {
                 value: e.target.value,
                 valid: this.handleEmailValidation(e.target.value)
             }
         });
-        this.props.onChange(e);
     }
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.handleSubmit(this.state.emailInput);
+        if(this.props.emailInput.valid) {
+            console.log(`${this.props.subscriber.email} signed up, send req to db`);
+            console.log(this.props.subscriber);
+
+            fetch(new Request('./favicon.ico'), {mode: 'cors'}).then(res => {
+                console.log(res);
+                return res.blob;
+            });
+        } else {
+            console.log('validation failed, color up the input and such');
+        }
     }
 
     render() {
@@ -36,7 +47,7 @@ class EmailForm extends React.Component {
                 <input type="email"
                     className="bb-form-input"
                     placeholder="Enter your email address..."
-                    value={this.state.emailInput.value}
+                    value={this.props.emailInput.value}
                     onChange={this.handleChange}
                 />
                 <button type="submit"
@@ -45,12 +56,10 @@ class EmailForm extends React.Component {
                     disabled={!this.props.allowSubmit}
                 >
                     {this.props.submitButtonText}
-                    {/* {this.props.allowSubmit && `Sign me up!`}
-                    {!this.props.allowSubmit && `Choose Genres`} */}
                 </button>
             </form>
         )
     }
 }
 
-export default EmailForm;
+export default connect(mapStateToProps)(EmailForm);

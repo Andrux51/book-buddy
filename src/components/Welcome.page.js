@@ -1,11 +1,8 @@
 import React from 'react';
-import {
-    Link
-} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class WelcomePage extends React.Component {
-    constructor(props) {
-        super(props);
+    componentWillMount() {
         document.title = 'Welcome | BookBuddy';
     }
 

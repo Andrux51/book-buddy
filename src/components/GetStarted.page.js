@@ -1,72 +1,46 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import EmailForm from './EmailForm';
 import GenreSelection from './GenreSelection';
 
+const mapStateToProps = (state) => {
+    return {
+        subscriber: state.subscriber,
+        emailInput: state.emailInput,
+        genresAvailable: state.genresAvailable
+    }
+}
+
 class GetStartedPage extends React.Component {
-    constructor(props) {
-        super(props);
-        document.title = 'Get Started | BookBuddy';
+    componentWillMount() {
+        document.title = 'Get Started | BookBuddy'; 
+    }
 
-        this.state = {
-            genresAvailable: [ // get from API
-                'Action', 'Comedy', 'Fantasy', 'Romance', 'Sci-Fi', 'Self-help'
-            ]
+    allowFormSubmit = () => {
+        if(!this.props.emailInput.valid) {
+            return false;
         }
-    }
-
-    handleEmailEntry = e => {
-        this.props.updateSubscriber('email', e.target.value);
-    }
-
-    handleEmailSubmission = email => {
-        if(email.valid) {
-            console.log(`${email.value} signed up, send req to db`);
-
-            fetch(new Request('./favicon.ico'), {mode: 'cors'}).then(res => {
-                console.log(res);
-                return res.blob;
-            });
-        } else {
-            console.log('validation failed, color up the input and such');
+        if(!(this.props.subscriber.genresChosen.length >= 2
+            && this.props.subscriber.email && this.props.subscriber.email.length > 0)) {
+            return false;
         }
-    }
-
-    handleGenreSelection = (e, genre, selected) => {
-        let genresChosen = this.props.subscriber.genresChosen.slice();
-
-        if(selected) {
-            genresChosen.push(genre);
-        } else {
-            genresChosen = genresChosen.filter(elem => {
-                return elem !== genre;
-            });
-        }
-
-        this.props.updateSubscriber('genresChosen', genresChosen);
-    }
-
-    allowGenreSelection = (genre) => {
-        return this.props.subscriber.genresChosen.includes(genre) || this.props.subscriber.genresChosen.length < 4;
-    }
-
-    allowEmailSubmit = () => {
-        return this.props.subscriber.genresChosen.length >= 2
-            && this.props.subscriber.email && this.props.subscriber.email.length > 0;
+        return true;
     }
 
     setSubmitButtonText = () => {
-        if(this.allowEmailSubmit()) {
+        if(this.allowFormSubmit()) {
             return `Sign me up!`;
         }
-        if(!this.props.subscriber.email && this.props.subscriber.genresChosen.length < 2) {
+        if(!this.props.emailInput.valid && this.props.subscriber.genresChosen.length < 2) {
             return `Choose genres & enter email`;
         }
-        if(!this.props.subscriber.email) {
+        if(!this.props.emailInput.valid) {
             return `Enter email`;
         }
         if(this.props.subscriber.genresChosen.length < 2) {
             return `Choose Genres above`;
         }
+        return `Sign Up`;
     }
 
     render() {
@@ -84,18 +58,17 @@ class GetStartedPage extends React.Component {
                 </p>
                 <div className="bb-checkbox-matrix">
                 {
-                    this.state.genresAvailable.map((genre, i) => {
-                        return <GenreSelection key={genre}
+                    this.props.genresAvailable.map((genre, i) => {
+                        return <GenreSelection
+                            key={genre}
                             genre={genre}
-                            allow={this.allowGenreSelection(genre)}
-                            handleChange={this.handleGenreSelection}
                         />
                     })
                 }
                 </div>
-                <EmailForm onChange={this.handleEmailEntry}
-                    handleSubmit={this.handleEmailSubmission}
-                    allowSubmit={this.allowEmailSubmit()}
+                <EmailForm
+                    handleSubmit={this.handleFormSubmission}
+                    allowSubmit={this.allowFormSubmit()}
                     submitButtonText={this.setSubmitButtonText()}
                 />
             </div>
@@ -103,4 +76,4 @@ class GetStartedPage extends React.Component {
     }
 }
 
-export default GetStartedPage;
+export default connect(mapStateToProps)(GetStartedPage);
