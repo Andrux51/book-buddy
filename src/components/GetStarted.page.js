@@ -67,7 +67,6 @@ class GetStartedPage extends React.Component {
                 }
                 </div>
                 <EmailForm
-                    handleSubmit={this.handleFormSubmission}
                     allowSubmit={this.allowFormSubmit()}
                     submitButtonText={this.setSubmitButtonText()}
                 />
