@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
@@ -8,27 +9,13 @@ import './App.css';
 import WelcomePage from './components/Welcome.page';
 import GetStartedPage from './components/GetStarted.page';
 
+const mapStateToProps = (state) => {
+  return {
+    subscriber: state.subscriber
+  };
+}
+
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      subscriber: {
-        email: '',
-        genresChosen: [],
-        name: ''
-      }
-    };
-  }
-
-  updateSubscriber = (key, val) => {
-    let subscriber = Object.assign({}, this.state.subscriber);
-
-    subscriber[key] = val;
-
-    this.setState({ subscriber });
-  }
-
   render() {
     return (
       <Router>
@@ -40,17 +27,14 @@ class App extends Component {
             <h1 className="App-title">Welcome to BookBuddy</h1>
           </header>
           <div>
-            <Route path="/"
+            <Route
               exact
+              path="/"
               component={WelcomePage}
             />
-            <Route path="/get-started"
-              render={() =>
-                <GetStartedPage
-                  subscriber={this.state.subscriber}
-                  updateSubscriber={this.updateSubscriber}
-                />
-              }
+            <Route
+              path="/get-started"
+              component={GetStartedPage}
             />
           </div>
         </div>
@@ -59,4 +43,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapStateToProps)(App);
