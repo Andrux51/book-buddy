@@ -10,11 +10,12 @@ const mapStateToProps = (state) => {
 
 class GenreSelection extends React.Component {
     handleChange = e => {
-        this.props.dispatch(actions.chooseGenre(e.target.checked, this.props.genre));
+        this.props.dispatch(actions.chooseGenre(this.props.genre, e.target.checked));
     }
 
     allowGenreSelection = () => {
-        return this.props.subscriber.genresChosen.includes(this.props.genre) || this.props.subscriber.genresChosen.length < 4;
+        return this.props.subscriber.genresChosen.includes(this.props.genre)
+            || this.props.subscriber.genresChosen.length < 4;
     }
 
     render() {

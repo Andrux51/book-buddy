@@ -1,13 +1,13 @@
 import {createStore} from 'redux';
 import {initialState} from './state';
-import {constants as actionConstants} from './actions';
+import {types as actionTypes} from './actions';
 import * as helpers from './reducer.helpers';
 
 const reducer = (state = initialState, action) => {
     console.log('action', action);
 
     switch(action.type) {
-        case actionConstants.chooseGenre:
+        case actionTypes.chooseGenre:
             return {
                 ...state,
                 subscriber: {
@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
                         .handleGenreSelection(state.subscriber.genresChosen, action.genreChosen)
                 }
             };
-        case actionConstants.updateEmailInput:
+        case actionTypes.updateEmailInput:
             return {
                 ...state,
                 subscriber: {

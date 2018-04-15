@@ -1,11 +1,11 @@
-export const constants = {
+export const types = {
     chooseGenre: "CHOOSE_GENRE",
     updateEmailInput: "UPDATE_EMAIL_INPUT",
 };
 
-export const chooseGenre = (checked, genre) => {
+export const chooseGenre = (genre, checked) => {
     return {
-        type: "CHOOSE_GENRE",
+        type: types.chooseGenre,
         genreChosen: {
             name: genre,
             selected: checked
@@ -15,7 +15,7 @@ export const chooseGenre = (checked, genre) => {
 
 export const updateEmailInput = (value, validate) => {
     return {
-        type: constants.updateEmailInput,
+        type: types.updateEmailInput,
         emailInput: {
             value: value,
             valid: validate(value)
