@@ -27,6 +27,10 @@ beforeEach(() => {
 });
 
 describe(`Main app component`, () => {
+    test(`App component works...`, () => {
+        expect(typeof app.props).toBe('object');
+    });
+
     test(`find links`, () => {
         // two ways to write the same property
         expect(reactRouter.find({href: '/'})).toHaveLength(1);
@@ -43,9 +47,5 @@ describe(`Main app component`, () => {
 
         expect(reactRouter.find(WelcomePage)).toHaveLength(0);
         expect(reactRouter.find(GetStartedPage)).toHaveLength(1);
-    });
-
-    test(`App component works...`, () => {
-        expect(typeof app.props).toBe('object');
     });
 });
