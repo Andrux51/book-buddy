@@ -44,6 +44,7 @@ describe(`Main app component`, () => {
     });
 
     test(`GetStartedPage link works...`, () => {
+        // {button: 0} is the key to this whole thing working
         reactRouter.find({href: '/get-started'}).simulate('click', {button: 0});
 
         expect(reactRouter.find(WelcomePage)).toHaveLength(0);
@@ -52,5 +53,5 @@ describe(`Main app component`, () => {
 
     test(`App component works...`, () => {
         expect(typeof app.props).toBe('object');
-    })
+    });
 });
