@@ -17,7 +17,7 @@ describe('actions', () => {
 
         expect(actions.chooseGenre(genre, checked)).toEqual(expectedAction);
     });
-    
+
     test('update email input', () => {
         const value = 'gomer.pyle@usmc.mil';
         const validate = jest.fn().mockReturnValue(true);
@@ -30,7 +30,9 @@ describe('actions', () => {
             }
         };
 
-        expect(actions.updateEmailInput(value, validate)).toEqual(expectedAction);
-        expect(validate.mock.calls.length).toBe(1);
+        const actionResponse = actions.updateEmailInput(value, validate);
+
+        expect(validate.mock.calls).toHaveLength(1);
+        expect(actionResponse).toEqual(expectedAction);
     });
 });
