@@ -10,8 +10,7 @@ import App from './App';
 import WelcomePage from './components/Welcome.page';
 import GetStartedPage from './components/GetStarted.page';
 
-let reactRouter;
-let app;
+let reactRouter, app;
 
 beforeEach(() => {
     reactRouter = mount(

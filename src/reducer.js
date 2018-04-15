@@ -3,7 +3,7 @@ import {initialState} from './state';
 import * as ReducerHelpers from './reducer.helpers';
 
 const reducer = (state = initialState, action) => {
-    console.log('action', action);
+    // console.log('action', action);
 
     switch(action.type) {
         case "CHOOSE_GENRE":
