@@ -1,84 +1,84 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
 }
 
 .App-title {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 .App-intro {
-  font-size: large;
+    font-size: large;
 }
 
 .bb-description {
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @keyframes App-logo-spin {
-  /* from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); } */
+    /* from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); } */
 }
 
 /* **[attr*=value] Does not work in IE or Edge** */
 button[class*="bb-btn-"] {
-  border: none;
-  text-decoration: none;
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-  border-radius: 3px;
-  padding: 10px 0;
-  cursor: pointer;
+    border: none;
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 10px 0;
+    cursor: pointer;
 }
 button[class*="bb-btn-"] a {
-  color: white;
-  text-decoration: none;
-  padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
 }
 button[class*="bb-btn-"][disabled] {
-  background-color: #ddd;
-  color: #aaa;
-  cursor: not-allowed;
+    background-color: #ddd;
+    color: #aaa;
+    cursor: not-allowed;
 }
 
 .bb-btn-route {
-  background-color:#6c9;
+    background-color:#6c9;
 }
 button[type="submit"] {
-  background-color:#627cf1;
-  padding: 10px 15px;
+    background-color:#627cf1;
+    padding: 10px 15px;
 }
 
 .bb-form-input[type="email"] {
-  padding:10px;
-  border-radius: 3px;
-  border: 1px solid #ccc;
-  margin-right: 1em;
-  font-size:16px;
+    padding:10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    margin-right: 1em;
+    font-size:16px;
 }
 
 .bb-genre-checkbox {
-  text-align: initial;
-  display: inline-block;
-  padding: 0 8px;
+    text-align: initial;
+    display: inline-block;
+    padding: 0 8px;
 }
 .bb-checkbox-matrix {
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 18px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 18px;
 }
