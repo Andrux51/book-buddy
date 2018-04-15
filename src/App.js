@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
@@ -9,13 +8,7 @@ import './App.css';
 import WelcomePage from './components/Welcome.page';
 import GetStartedPage from './components/GetStarted.page';
 
-const mapStateToProps = (state) => {
-  return {
-    subscriber: state.subscriber
-  };
-}
-
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
       <Router>
@@ -42,5 +35,3 @@ class App extends Component {
     );
   }
 }
-
-export default connect(mapStateToProps)(App);
