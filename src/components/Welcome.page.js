@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-class WelcomePage extends React.Component {
+export default class WelcomePage extends React.Component {
     componentWillMount() {
         document.title = 'Welcome | BookBuddy';
     }
@@ -25,5 +25,3 @@ class WelcomePage extends React.Component {
         )
     }
 }
-
-export default WelcomePage;
