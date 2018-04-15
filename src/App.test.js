@@ -10,25 +10,19 @@ import GetStartedPage from './components/GetStarted.page';
 
 let reactRouter, app;
 
+const jsx = 
+    <Provider store={store}>
+        <MemoryRouter>
+            <App />
+        </MemoryRouter>
+    </Provider>
+
 test(`renders without crashing`, () => {
-    const component = renderer.create(
-        <Provider store={store}>
-            <MemoryRouter>
-                <App />
-            </MemoryRouter>
-        </Provider>
-    );
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(renderer.create(jsx).toJSON()).toMatchSnapshot();
 });
 
 beforeEach(() => {
-    reactRouter = mount(
-        <Provider store={store}>
-            <MemoryRouter>
-                <App />
-            </MemoryRouter>
-        </Provider>
-    );
+    reactRouter = mount(jsx);
     app = reactRouter.find(App).instance();
 });
 
