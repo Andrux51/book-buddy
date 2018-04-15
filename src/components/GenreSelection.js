@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import * as actions from '../actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -9,13 +10,7 @@ const mapStateToProps = (state) => {
 
 class GenreSelection extends React.Component {
     handleChange = e => {
-        this.props.dispatch({
-            type: "CHOOSE_GENRE",
-            genreChosen: {
-                name: this.props.genre,
-                selected: e.target.checked
-            }
-        });
+        this.props.dispatch(actions.chooseGenre(e.target.checked, this.props.genre));
     }
 
     allowGenreSelection = () => {

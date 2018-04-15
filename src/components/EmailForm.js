@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import * as actions from '../actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -9,7 +10,7 @@ const mapStateToProps = (state) => {
 }
 
 class EmailForm extends React.Component {
-    handleEmailValidation = val => {
+    validateEmailInput = val => {
         // **validation regex from http://emailregex.com/
         // eslint-disable-next-line
         return (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
@@ -17,13 +18,7 @@ class EmailForm extends React.Component {
     }
 
     handleChange = e => {
-        this.props.dispatch({
-            type: "UPDATE_EMAIL_INPUT",
-            emailInput: {
-                value: e.target.value,
-                valid: this.handleEmailValidation(e.target.value)
-            }
-        });
+        this.props.dispatch(actions.updateEmailInput(e.target.value, this.validateEmailInput));
     }
 
     handleSubmit = e => {
