@@ -10,17 +10,6 @@ import GetStartedPage from './components/GetStarted.page';
 
 let reactRouter, app;
 
-beforeEach(() => {
-    reactRouter = mount(
-        <Provider store={store}>
-            <MemoryRouter>
-                <App />
-            </MemoryRouter>
-        </Provider>
-    );
-    app = reactRouter.find(App).instance();
-});
-
 test(`renders without crashing`, () => {
     const component = renderer.create(
         <Provider store={store}>
@@ -30,6 +19,17 @@ test(`renders without crashing`, () => {
         </Provider>
     );
     expect(component.toJSON()).toMatchSnapshot();
+});
+
+beforeEach(() => {
+    reactRouter = mount(
+        <Provider store={store}>
+            <MemoryRouter>
+                <App />
+            </MemoryRouter>
+        </Provider>
+    );
+    app = reactRouter.find(App).instance();
 });
 
 describe(`Main app component`, () => {
